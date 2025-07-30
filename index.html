@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Muiraquitã | Laboratórios de Inovação e Inteligência Artificial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --azul-escuro: #0a1835;
+            --azul-medio: #183a66;
+            --dourado: #ffa500;
+            --dourado-suave: #ffd580;
+            --branco: #fff;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(to bottom, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+        }
+        .navbar {
+            width: 100%;
+            background: rgba(10, 24, 53, 0.97);
+            display: flex;
+            align-items: flex-start;
+            padding: 0 5vw;
+            min-height: 110px;
+            box-sizing: border-box;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo-area {
+            display: flex;
+            align-items: flex-start;
+        }
+        .logo {
+            height: 96px;
+            width: 96px;
+            object-fit: contain;
+            margin-right: 22px;
+            margin-top: 5px;
+        }
+        .titulos {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .titulo-site {
+            font-size: 60px;
+            color: var(--dourado);
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 1;
+            margin-bottom: 7px;
+            margin-top: 10px;
+            white-space: nowrap;
+            text-shadow: 1px 2px 8px #0003;
+        }
+        .subtitulo-site {
+            font-size: 20px;
+            color: var(--dourado-suave);
+            font-weight: 600;
+            line-height: 1;
+            white-space: nowrap;
+            letter-spacing: 1px;
+            text-shadow: 1px 2px 8px #0002;
+        }
+        nav.menu {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            flex: 1;
+            margin-left: 50px;
+            margin-top: 28px;
+        }
+        nav.menu a {
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav.menu a:hover, nav.menu a:focus {
+            background: var(--dourado);
+            color: var(--azul-escuro);
+        }
+        .main-flex-container {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 60px auto 0 auto;
+            background: rgba(255,255,255,0.02);
+            padding: 32px 6vw;
+            border-radius: 18px;
+            color: var(--branco);
+            box-shadow: 0 4px 20px 0 rgba(20,30,50,0.07);
+            gap: 50px;
+        }
+        .quem-somos-texto {
+            flex: 2;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .quem-somos-texto h1 {
+            font-size: 2.4rem;
+            font-weight: bold;
+            margin-bottom: 18px;
+            color: var(--dourado);
+        }
+        .quem-somos-texto p {
+            font-size: 1.16rem;
+            line-height: 1.7;
+            margin: 0 0 12px 0;
+        }
+        /* Círculos distribuídos e animados */
+        .imagens-circulares {
+            position: relative;
+            min-width: 350px;
+            min-height: 530px;
+            height: 530px;
+            flex: 1.2;
+        }
+        .imagens-circulares img {
+            position: absolute;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--dourado-suave);
+            box-shadow: 0 2px 16px #0004;
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+            animation: aparecer 0.9s forwards;
+        }
+        /* Círculos posicionados conforme o modelo enviado */
+        .img1 { width: 190px; height: 190px; left:   0px; top: 120px; animation-delay: 0.55s; }
+        .img2 { width: 170px; height: 170px; left: 190px; top:   0px; animation-delay: 0.65s; }
+        .img3 { width: 150px; height: 150px; left: 200px; top: 250px; animation-delay: 0.85s; }
+        .img4 { width: 130px; height: 130px; left:  50px; top: 390px; animation-delay: 0.95s; }
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(40px) scale(0.9);}
+            to   { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        @media (max-width: 1100px) {
+            .titulo-site { font-size: 36px; }
+            .subtitulo-site { font-size: 16px; }
+            .logo { height: 60px; width: 60px; }
+            nav.menu { margin-left: 10px; gap: 10px; }
+            .main-flex-container { flex-direction: column; align-items: stretch; gap: 18px;}
+            .imagens-circulares { min-width: 0; min-height: 0; height: auto; }
+            .imagens-circulares img {
+                position: static;
+                width: 70px !important; height: 70px !important;
+                margin: 8px;
+                animation-delay: 0s !important;
+            }
+        }
+        @media (max-width: 700px) {
+            .navbar { flex-direction: column; align-items: flex-start; min-height: 80px; padding: 10px 2vw;}
+            .logo-area { margin-bottom: 12px; }
+            .titulo-site { font-size: 25px; }
+            .subtitulo-site { font-size: 11px; }
+            .logo { height: 36px; width: 36px; }
+            nav.menu { margin-left: 0; gap: 8px; flex-wrap: wrap; }
+            nav.menu a { font-size: 15px; padding: 6px 8px; }
+            .main-flex-container { padding: 18px 3vw; }
+            .imagens-circulares { flex-direction: row; justify-content: flex-start; align-items: center; min-width: 0; min-height: 0; gap: 8px; height: auto;}
+            .imagens-circulares img { width: 38px !important; height: 38px !important; position: static; margin: 0 4px 0 0; }
+        }
+        footer {
+            width: 100%;
+            background: transparent;
+            color: var(--dourado-suave);
+            text-align: center;
+            font-size: 1.05rem;
+            padding: 28px 0 16px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-area">
+            <img src="LogoMui.png" alt="Logo Muiraquitã" class="logo">
+            <div class="titulos">
+                <span class="titulo-site">Muiraquitã</span>
+                <span class="subtitulo-site">Laboratórios de Inovação e Inteligência Artificial</span>
+            </div>
+        </div>
+        <nav class="menu" aria-label="Menu principal">
+            <a href="Equipe.html">Equipe</a>
+            <a href="Iniciativas.html">Iniciativas</a>
+            <a href="Assistentes.html">Assistentes de IA</a>		
+            <a href="Escritorios.html">Escritórios Itinerantes</a>
+            <a href="Parcerias.html">Parcerias</a>
+            <a href="CadastreSuaIdeia.html">Cadastre sua ideia</a>
+        </nav>
+    </div>
+    <div class="main-flex-container">
+        <section class="quem-somos-texto">
+            <h1>Quem somos</h1>
+            <p>O Comitê de Governança da Inovação e Inteligência Artificial é o responsável por traçar as diretrizes, formular políticas e priorizar os objetivos de Inovação e Inteligência Artificial do Ministério Público do Estado do Pará.</p>
+            <p>Os Escritórios de Inovação e Inteligência Artificial do MPPA têm como objetivo central promover a modernização institucional através da inovação tecnológica e do uso de IA. Sua finalidade é melhorar os serviços prestados, otimizar processos e aproximar o Ministério Público do cidadão, tornando a atuação mais eficiente, resolutiva e digitalizada.</p>
+        </section>
+        <div class="imagens-circulares">
+            <img src="Amazon1.jpeg" class="img1" alt="Rio e floresta">
+            <img src="Veropa.jpeg" class="img2" alt="Ver-o-Peso, Belém">
+            <img src="broca.jpeg" class="img3" alt="Comida típica paraense">
+            <img src="castanhas.jpeg" class="img4" alt="Castanhas do Pará">
+        </div>
+    </div>
+    <footer>
+        Desenvolvido pelos Laboratórios de Inovação e Inteligência Artificial - 2025
+    </footer>
+    <script>
+        // Rolar suavemente para a seção ao clicar no menu
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if(href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if(target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
