@@ -5,36 +5,238 @@
     <title>Cadastre sua ideia | Muiraquitã - Laboratórios de Inovação e IA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        :root { --azul-escuro: #0a1835; --azul-medio: #183a66; --dourado: #ffa500; --dourado-suave: #ffd580; --branco: #fff;}
-        body { margin: 0; padding: 0; min-height: 100vh; font-family: 'Segoe UI', Arial, sans-serif; background: linear-gradient(to bottom, var(--azul-escuro) 0%, var(--azul-medio) 100%);}
-        .navbar { width: 100%; background: rgba(10, 24, 53, 0.97); display: flex; align-items: flex-start; padding: 0 5vw; min-height: 110px; box-sizing: border-box; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100;}
-        .logo-area { display: flex; align-items: flex-start;}
-        .logo { height: 60px; width: 60px; object-fit: contain; margin-right: 18px; margin-top: 6px;}
-        .titulos { display: flex; flex-direction: column; justify-content: flex-start;}
-        .titulo-site { font-size: 38px; color: var(--dourado); font-weight: bold; letter-spacing: 1px; line-height: 1; margin-bottom: 3px; margin-top: 10px; white-space: nowrap; text-shadow: 1px 2px 8px #0003;}
-        .subtitulo-site { font-size: 16px; color: var(--dourado-suave); font-weight: 600; line-height: 1; white-space: nowrap; letter-spacing: 1px; text-shadow: 1px 2px 8px #0002;}
-        nav.menu { display: flex; align-items: center; gap: 24px; flex: 1; margin-left: 50px; margin-top: 24px;}
-        nav.menu a { color: var(--branco); text-decoration: none; font-size: 18px; font-weight: 500; padding: 8px 12px; border-radius: 4px; transition: background 0.2s, color 0.2s;}
-        nav.menu a:hover, nav.menu a:focus { background: var(--dourado); color: var(--azul-escuro);}
-        .menu a[href=\"CadastreSuaIdeia.html\"] {background:var(--dourado);color:var(--azul-escuro);}
-        .pagina-container { max-width: 750px; margin: 48px auto 0 auto; background: rgba(255,255,255,0.02); padding: 36px 6vw; border-radius: 18px; color: var(--branco); box-shadow: 0 4px 20px 0 rgba(20,30,50,0.07);}
-        h1 { color: var(--dourado); font-size: 2.2rem; margin-bottom: 26px; text-align: left; letter-spacing: 1px;}
-        .texto-inicial { color: var(--dourado-suave); font-size: 1.14rem; margin-bottom: 26px;}
-        /* Formulário exemplo (não funcional) */
-        .form-ideia { display: flex; flex-direction: column; gap: 16px; margin-top: 22px;}
-        .form-ideia label { color: var(--dourado-suave); font-weight: 500;}
-        .form-ideia input, .form-ideia textarea {
-            border: none; border-radius: 8px; padding: 10px 12px; font-size: 1.05rem;
-            background: #fff1; color: var(--branco); outline: none; transition: background 0.2s;
+        :root {
+            --azul-escuro: #0a1835;
+            --azul-medio: #183a66;
+            --dourado: #ffa500;
+            --dourado-suave: #ffd580;
+            --branco: #fff;
         }
-        .form-ideia input:focus, .form-ideia textarea:focus { background: #fff3; }
-        .form-ideia button {
-            background: var(--dourado); color: var(--azul-escuro); font-weight: bold;
-            border: none; border-radius: 6px; padding: 12px 20px; font-size: 1.12rem; cursor: pointer;
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(to bottom, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+        }
+
+        .navbar {
+            width: 100%;
+            background: rgba(10, 24, 53, 0.97);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 16px 5vw;
+            min-height: 110px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+            margin-right: 18px;
+            margin-top: 6px;
+        }
+
+        .titulos {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .titulo-site {
+            font-size: 38px;
+            color: var(--dourado);
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 1;
+            margin-bottom: 3px;
+            margin-top: 10px;
+            white-space: nowrap;
+            text-shadow: 1px 2px 8px #0003;
+        }
+
+        .subtitulo-site {
+            font-size: 16px;
+            color: var(--dourado-suave);
+            font-weight: 600;
+            line-height: 1;
+            white-space: nowrap;
+            letter-spacing: 1px;
+            text-shadow: 1px 2px 8px #0002;
+        }
+
+        nav.menu {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        nav.menu a {
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        nav.menu a:hover, nav.menu a:focus {
+            background: var(--dourado);
+            color: var(--azul-escuro);
+        }
+
+        .pagina-container {
+            max-width: 750px;
+            margin: 48px auto 0 auto;
+            background: rgba(255,255,255,0.02);
+            padding: 36px 6vw;
+            border-radius: 18px;
+            color: var(--branco);
+            box-shadow: 0 4px 20px 0 rgba(20,30,50,0.07);
+        }
+
+        h1 {
+            color: var(--dourado);
+            font-size: 2.2rem;
+            margin-bottom: 26px;
+            text-align: left;
+            letter-spacing: 1px;
+        }
+
+        .texto-inicial {
+            color: var(--dourado-suave);
+            font-size: 1.14rem;
+            margin-bottom: 26px;
+        }
+
+        .form-ideia {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .form-ideia label {
+            color: var(--dourado-suave);
+            font-weight: 500;
+        }
+
+        .form-ideia input, .form-ideia textarea {
+            border: none;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 1.05rem;
+            background: #fff1;
+            color: var(--branco);
+            outline: none;
             transition: background 0.2s;
         }
-        .form-ideia button:hover { background: var(--dourado-suave);}
-        footer { width: 100%; background: transparent; color: var(--dourado-suave); text-align: center; font-size: 1.05rem; padding: 28px 0 16px 0; margin-top: 40px;}
+
+        .form-ideia input:focus, .form-ideia textarea:focus {
+            background: #fff3;
+        }
+
+        .form-ideia button {
+            background: var(--dourado);
+            color: var(--azul-escuro);
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            font-size: 1.12rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .form-ideia button:hover {
+            background: var(--dourado-suave);
+        }
+
+        footer {
+            width: 100%;
+            background: transparent;
+            color: var(--dourado-suave);
+            text-align: center;
+            font-size: 1.05rem;
+            padding: 28px 0 16px 0;
+            margin-top: 40px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 5vw;
+            }
+
+            .logo-area {
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 12px;
+            }
+
+            .titulo-site {
+                font-size: 28px;
+            }
+
+            .subtitulo-site {
+                font-size: 14px;
+            }
+
+            nav.menu {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+                margin: 12px 0 0 0;
+            }
+
+            nav.menu a {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .titulo-site {
+                font-size: 24px;
+            }
+
+            .subtitulo-site {
+                font-size: 12px;
+            }
+
+            .logo {
+                height: 50px;
+                width: 50px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -50,7 +252,7 @@
             <a href="index.html">Quem somos</a>
             <a href="Equipe.html">Equipe</a>
             <a href="Iniciativas.html">Iniciativas</a>
-            <a href="Assistentes.html">Assistentes de IA</a>						
+            <a href="Assistentes.html">Assistentes de IA</a>
             <a href="Escritorios.html">Escritórios Itinerantes</a>
             <a href="Parcerias.html">Parcerias</a>
             <a href="CadastreSuaIdeia.html" style="background:var(--dourado);color:var(--azul-escuro)">Cadastre sua ideia</a>
