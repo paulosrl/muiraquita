@@ -2,204 +2,258 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Escritórios Itinerantes | Muiraquitã - Laboratórios de Inovação e IA</title>
+    <title>Assistentes de IA | Muiraquitã - Laboratórios de Inovação e IA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
-            --azul-escuro: #0a1835;
-            --azul-medio: #183a66;
-            --dourado: #ffa500;
-            --dourado-suave: #ffd580;
+            --azul-escuro: #202A44;
+            --azul-medio: #2E3953;
+            --azul-navbar: #fff;
+            --azul-suave: #415076;
+            --azul-gradiente: linear-gradient(90deg, #f7fafd 0%, #e2e7f1 100%);
+            --azul-gradiente-hover: linear-gradient(90deg, #d4e0f5 0%, #e7edf7 100%);
+            --azul-gradiente-menu: linear-gradient(90deg, #e7edf7 0%, #f3f5f7 100%);
+            --preto: #181c22;
             --branco: #fff;
+            --cinza-fundo: #f3f5f7;
         }
-
-        * {
-            box-sizing: border-box;
+        html, body {
+            height: 100%;
         }
-
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            min-width: 100vw;
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(to bottom, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            background: var(--cinza-fundo);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
         }
-
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="39" y="39" width="2" height="2" rx="1" fill="%23202A44" fill-opacity="0.08"/></svg>') repeat;
+            opacity: 0.4;
+            z-index: 0;
+            pointer-events: none;
+        }
+        @media (max-width: 900px) {
+            body::before { display: none; }
+        }
+        .navbar-degrade {
+            width: 100vw;
+            min-height: 14px;
+            background: var(--azul-gradiente);
+            box-shadow: 0 2px 12px #2E395312;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 2;
+        }
         .navbar {
             width: 100%;
-            background: rgba(10, 24, 53, 0.97);
+            background: var(--azul-navbar);
             display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
-            padding: 8px 5vw;
-            min-height: 80px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 0 4vw;
+            min-height: 110px;
+            box-sizing: border-box;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 10;
+            gap: 24px;
         }
-
         .logo-area {
             display: flex;
-            align-items: flex-start;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
         }
-
         .logo {
-            height: 50px;
-            width: 50px;
+            height: 90px;
+            width: 90px;
             object-fit: contain;
-            margin-right: 18px;
-            margin-top: 6px;
         }
-
         .titulos {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
         }
-
         .titulo-site {
-            font-size: 38px;
-            color: var(--dourado);
+            font-size: 54px;
+            color: var(--preto);
             font-weight: bold;
             letter-spacing: 1px;
-            line-height: 1;
-            margin-bottom: 3px;
-            margin-top: 4px;
+            line-height: 1.1;
+            margin-bottom: 2px;
+            margin-top: 7px;
             white-space: nowrap;
-            text-shadow: 1px 2px 8px #0003;
+            text-shadow: 0 1px 8px #e7edf7a1;
         }
-
         .subtitulo-site {
-            font-size: 16px;
-            color: var(--dourado-suave);
+            font-size: 20px;
+            color: var(--azul-suave);
             font-weight: 600;
-            line-height: 1;
-            white-space: nowrap;
+            line-height: 1.15;
             letter-spacing: 1px;
-            text-shadow: 1px 2px 8px #0002;
+            margin: 0;
+            text-shadow: 1px 2px 8px #0001;
         }
-
         nav.menu {
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
-            gap: 16px;
-            margin-top: 12px;
+            gap: 22px;
+            min-width: 340px;
+            flex-wrap: wrap;
         }
-
         nav.menu a {
-            color: var(--branco);
+            color: var(--azul-medio);
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16.5px;
             font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: background 0.2s, color 0.2s;
+            padding: 10px 18px;
+            border-radius: 7px;
+            transition: background 0.25s, color 0.22s, box-shadow 0.25s;
+            background: var(--azul-gradiente-menu);
+            box-shadow: 0 2px 8px #202a440a;
+            position: relative;
         }
-
         nav.menu a:hover, nav.menu a:focus {
-            background: var(--dourado);
+            background: var(--azul-gradiente-hover);
             color: var(--azul-escuro);
+            box-shadow: 0 4px 14px #2e395315;
         }
-
-        .pagina-container {
-            max-width: 750px;
-            margin: 48px auto 0 auto;
-            background: rgba(255,255,255,0.02);
-            padding: 36px 6vw;
-            border-radius: 18px;
+        nav.menu a.active {
+            background: var(--azul-suave);
             color: var(--branco);
-            box-shadow: 0 4px 20px 0 rgba(20,30,50,0.07);
+            font-weight: 700;
+            box-shadow: 0 4px 16px #2E395320;
         }
-
+        .separador {
+            width: 100vw;
+            height: 0;
+            border: none;
+            border-top: 5px solid transparent;
+            background: linear-gradient(90deg, #202A44 0%, #415076 60%, #fff 100%);
+            box-shadow: 0 8px 22px -10px #202a4445;
+            margin: 0 0 0 0;
+        }
+        .pagina-container {
+            max-width: 850px;
+            margin: 48px auto 0 auto;
+            background: var(--branco);
+            padding: 38px 6vw 38px 6vw;
+            border-radius: 22px;
+            color: var(--azul-medio);
+            box-shadow: 0 4px 28px 0 #202A4415;
+            z-index: 1;
+            position: relative;
+        }
         h1 {
-            color: var(--dourado);
+            color: var(--azul-escuro);
             font-size: 2.2rem;
             margin-bottom: 26px;
             text-align: left;
             letter-spacing: 1px;
         }
-
         .texto-inicial {
-            color: var(--dourado-suave);
+            color: var(--azul-suave);
             font-size: 1.14rem;
             margin-bottom: 26px;
         }
-
+        .assistentes-section {
+            margin-top: 38px;
+        }
+        .assistentes-section h2 {
+            color: var(--azul-escuro);
+            margin-bottom: 14px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        .assistente-card {
+            display: flex;
+            align-items: flex-start;
+            background: rgba(20,30,60,0.08);
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #0001;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+            gap: 20px;
+        }
+        .assistente-icon {
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 6px;
+        }
+        .assistente-card h3 {
+            margin: 0 0 6px 0;
+            color: var(--azul-escuro);
+            font-size: 1.13rem;
+        }
+        .assistente-card .autor {
+            color: var(--azul-suave);
+            font-size: 0.97rem;
+            margin-bottom: 6px;
+        }
+        .assistente-card .resumo {
+            margin-bottom: 4px;
+            font-size: 0.98rem;
+        }
+        .assistente-card .link-assistente {
+            color: var(--azul-medio);
+            font-weight: 500;
+            text-decoration: underline;
+            font-size: 1.02rem;
+        }
+        .assistente-card .link-assistente:hover {
+            color: var(--azul-suave);
+        }
         footer {
-            width: 100%;
-            background: transparent;
-            color: var(--dourado-suave);
+            width: 96vw;
+            margin: 48px auto 0 auto;
+            background: var(--azul-escuro);
+            color: var(--branco);
             text-align: center;
-            font-size: 1.05rem;
-            padding: 28px 0 16px 0;
-            margin-top: 40px;
+            font-size: 0.80rem;
+            font-weight: 500;
+            padding: 12px 0 12px 0;
+            border-radius: 18px;
+            box-shadow: 0 0px 22px #202a4417;
+            letter-spacing: 1px;
         }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 12px 5vw;
-            }
-
-            .logo-area {
-                flex-direction: row;
-                align-items: center;
-                width: 100%;
-                margin-bottom: 12px;
-            }
-
-            .titulo-site {
-                font-size: 28px;
-            }
-
-            .subtitulo-site {
-                font-size: 14px;
-            }
-
-            nav.menu {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-                width: 100%;
-                margin: 12px 0 0 0;
-            }
-
-            nav.menu a {
-                font-size: 16px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-                text-align: center;
-            }
+        @media (max-width: 1200px) {
+            .titulo-site { font-size: 34px; }
+            .subtitulo-site { font-size: 14px; }
+            .logo { height: 52px; width: 52px; }
+            nav.menu { gap: 9px; }
+            .pagina-container { padding: 18px 2vw; }
         }
-
-        @media (max-width: 480px) {
-            .titulo-site {
-                font-size: 24px;
-            }
-
-            .subtitulo-site {
-                font-size: 12px;
-            }
-
-            .logo {
-                height: 50px;
-                width: 50px;
-            }
+        @media (max-width: 700px) {
+            .navbar { flex-direction: column; align-items: flex-start; min-height: 80px; padding: 10px 2vw;}
+            .logo-area { margin-bottom: 12px; }
+            .titulo-site { font-size: 20px; }
+            .subtitulo-site { font-size: 10px; }
+            .logo { height: 32px; width: 32px; }
+            nav.menu { gap: 7px; flex-wrap: wrap; }
+            nav.menu a { font-size: 12.5px; padding: 5px 6px; }
+            .pagina-container { padding: 8px 2vw; }
+            .assistente-card { padding: 10px 8px; }
+            footer { width: 99vw; border-radius: 14px;}
         }
     </style>
 </head>
 <body>
+    <div class="navbar-degrade"></div>
     <div class="navbar">
         <div class="logo-area">
-            <img src="imgs\LogoMui.png" alt="Logo Muiraquitã" class="logo">
+            <img src="imgs/MUIRAQUITA.png" alt="Logo Muiraquitã" class="logo">
             <div class="titulos">
                 <span class="titulo-site">Muiraquitã</span>
                 <span class="subtitulo-site">Laboratórios de Inovação e Inteligência Artificial</span>
@@ -209,17 +263,126 @@
             <a href="index.html">Quem somos</a>
             <a href="Equipe.html">Equipe</a>
             <a href="Iniciativas.html">Iniciativas</a>
-            <a href="Assistentes.html" style="background:var(--dourado);color:var(--azul-escuro)">Assistentes de IA</a>
+            <a href="Assistentes.html" class="active">Assistentes de IA</a>
             <a href="Escritorios.html">Escritórios Itinerantes</a>
             <a href="Parcerias.html">Parcerias</a>
             <a href="CadastreSuaIdeia.html">Cadastre sua ideia</a>
         </nav>
     </div>
+    <div class="separador"></div>
     <main class="pagina-container">
         <h1>Assistentes de IA</h1>
         <div class="texto-inicial">
-            Em breve serão disponibilizados nossos assistentes por área de atuação.
+            Os assistentes de IA estão dividos por área de atuação. 
         </div>
+        <!-- ...restante do conteúdo permanece igual ao seu arquivo enviado... -->
+        <section class="assistentes-section">
+            <h2>Criminal</h2>
+            <!-- Card 1 -->
+            <div class="assistente-card">
+                <div class="assistente-icon">
+                    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+                        <rect x="14" y="4" width="4" height="17" rx="2" fill="#415076"/>
+                        <rect x="9" y="18" width="14" height="4" rx="2" fill="#202A44"/>
+                        <rect x="4" y="24" width="24" height="4" rx="2" fill="#415076"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Correção de textos e peças jurídicas</h3>
+                    <div class="autor">Autor: Rodrigo A Silva</div>
+                    <div class="resumo">Finalidade: Esse GPT tem por finalidade corrigir textos e peças jurídicas: gramática, ortografia, semântica, sintaxe, concordância verbal, concordância nominal, entre outros, apresentando ao final uma tabela com as mudanças realizadas. Cole o texto ou insira o arquivo como anexo.</div>
+                    <a class="link-assistente" href="https://chatgpt.com/g/g-DGEId5wHj-correcao-de-textos-e-pecas-juridicas" target="_blank">Acessar assistente</a>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="assistente-card">
+                <div class="assistente-icon">
+                    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+                        <rect x="14" y="4" width="4" height="17" rx="2" fill="#415076"/>
+                        <rect x="9" y="18" width="14" height="4" rx="2" fill="#202A44"/>
+                        <rect x="4" y="24" width="24" height="4" rx="2" fill="#415076"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Análise de Laudos Periciais</h3>
+                    <div class="autor">Autor: Rodrigo A Silva</div>
+                    <div class="resumo">Finalidade: Analisar laudos periciais em profundidade, fornecendo insights valiosos para investigações criminais ou processos judiciais, esclarecendo dúvidas, traduzindo termos técnicos em linguagem simples, para melhor entendimento da dinâmica de um crime ou incidente.</div>
+                    <a class="link-assistente" href="https://chatgpt.com/g/g-680cf5dd6a588191a69aabbf9a016bb9-analise-de-laudos-periciais" target="_blank">Acessar assistente</a>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="assistente-card">
+                <div class="assistente-icon">
+                    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+                        <rect x="14" y="4" width="4" height="17" rx="2" fill="#415076"/>
+                        <rect x="9" y="18" width="14" height="4" rx="2" fill="#202A44"/>
+                        <rect x="4" y="24" width="24" height="4" rx="2" fill="#415076"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Analista de Investigações Criminais</h3>
+                    <div class="autor">Autor: Rodrigo A Silva</div>
+                    <div class="resumo">Finalidade: Este GPT irá guiá-lo(a) através de uma análise detalhada e holística de casos criminais encaminhados pela polícia civil ao Ministério Público, em diversas etapas de desenvolvimento da investigação, com geração de peças ou sugestões de diligências.</div>
+                    <a class="link-assistente" href="https://chatgpt.com/g/g-ty8UKG5tT-analista-de-investigacoes-criminais" target="_blank">Acessar assistente</a>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="assistente-card">
+                <div class="assistente-icon">
+                    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+                        <rect x="14" y="4" width="4" height="17" rx="2" fill="#415076"/>
+                        <rect x="9" y="18" width="14" height="4" rx="2" fill="#202A44"/>
+                        <rect x="4" y="24" width="24" height="4" rx="2" fill="#415076"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Plantão Judicial Criminal</h3>
+                    <div class="autor">Autor: Rodrigo A Silva</div>
+                    <div class="resumo">Finalidade: Elaborar Manifestações em Plantão Judicial pelo Ministério Público, com possibilidade de elaboração da Peça jurídica escolhida: Não homologação do flagrante; Conversão em prisão preventiva; Fixação de medidas cautelares diversas; e Fixação de medidas protetivas.</div>
+                    <a class="link-assistente" href="https://chatgpt.com/g/g-F9ox6YDcT-plantao-judicial-criminal" target="_blank">Acessar assistente</a>
+                </div>
+            </div>
+        </section>
+        <section class="assistentes-section">
+            <h2>Extrajudicial</h2>
+            <div class="assistente-card">
+                <div class="assistente-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <ellipse cx="16" cy="27" rx="11" ry="2.3" fill="#202A44"/>
+                        <rect x="14.2" y="6" width="3.6" height="14" rx="1.8" fill="#415076"/>
+                        <path d="M16 7 L7 19 M16 7 L25 19" stroke="#415076" stroke-width="2"/>
+                        <ellipse cx="7" cy="22" rx="3" ry="1" fill="#202A44"/>
+                        <ellipse cx="25" cy="22" rx="3" ry="1" fill="#202A44"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Procedimentos Extrajudiciais MP</h3>
+                    <div class="autor">community builder</div>
+                    <div class="resumo">Finalidade: Agente estruturado para análise preliminar, síntese fática e jurídica, indicação de diligências e elaboração objetiva de despachos em procedimentos extrajudiciais do Ministério Público, alinhado às Resoluções do CNMP, CPJ/MPPA e Enunciados do CSMP, incluindo viabilidade de ANPC e encaminhamentos.</div>
+                    <a class="link-assistente" href="https://chatgpt.com/g/g-THFRV6AQM-procedimentos-extrajudiciais-mp" target="_blank">Acessar assistente</a>
+                </div>
+            </div>
+        </section>
+        <section class="assistentes-section">
+            <h2>Cível</h2>
+            <div class="assistente-card">
+                <div class="assistente-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <ellipse cx="16" cy="27" rx="11" ry="2.3" fill="#202A44"/>
+                        <rect x="14.2" y="6" width="3.6" height="14" rx="1.8" fill="#415076"/>
+                        <path d="M16 7 L7 19 M16 7 L25 19" stroke="#415076" stroke-width="2"/>
+                        <ellipse cx="7" cy="22" rx="3" ry="1" fill="#202A44"/>
+                        <ellipse cx="25" cy="22" rx="3" ry="1" fill="#202A44"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Parecer Cível - MP</h3>
+                    <div class="autor">community builder</div>
+                    <div class="resumo">Finalidade: Agente estruturado para análise preliminar objetiva e redação fundamentada de pareceres ministeriais em processos judiciais cíveis, destacando provas, questões jurídicas essenciais e diligências necessárias, alinhado às normas de atuação do Ministério Público e boas práticas jurídicas.</div>
+                    <a class="link-assistente" href="https://chatgpt.com/g/g-688d12c4ccfc8191a04d84aed0d96c77-parecer-civel-mp" target="_blank">Acessar assistente</a>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         Desenvolvido pelos Laboratórios de Inovação e Inteligência Artificial - 2025
