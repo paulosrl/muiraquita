@@ -180,13 +180,15 @@
             border-radius: 8px;
             padding: 10px 12px;
             font-size: 1.05rem;
-            background: #fff4;
+            background: var(--azul-gradiente-menu);
             color: var(--azul-escuro);
             outline: none;
-            transition: background 0.2s;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px #202a440a;
         }
         .form-ideia input:focus, .form-ideia textarea:focus {
-            background: #e7edf7;
+            background: var(--azul-gradiente-hover);
+            box-shadow: 0 4px 18px #41507623;
         }
         .form-ideia button {
             background: var(--azul-suave);
