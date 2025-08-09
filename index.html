@@ -422,18 +422,17 @@
 	  .media-grid .c4{ width: 125px !important; height: 135px !important; left: 250px !important; top: 260px !important }
 
 
-
-
-
 	/* Reduz 30% o tamanho dos círculos da direita (c3 e c4) no mobile */
 
 	  .media-grid .c1{ 
 		width: calc(140px * 0.8) !important; 
-		height: calc(145px * 0.8) !important; 
+		height: calc(145px * 0.8) !important;
+		left: calc(3px - (3px * 0.20)) !important; 			
 	  }
 	  .media-grid .c2{ 
 		width: calc(125px * 0.8) !important; 
 		height: calc(135px * 0.8) !important; 
+	    left: calc(130px - (130px * 0.20)) !important; 	
 	  }
 
 	  .media-grid .c3{ 
@@ -446,8 +445,6 @@
 		height: calc(135px * 0.7) !important;
 		left: calc(250px - (250px * 0.30)) !important; /* move 30% mais para a esquerda */
 	  }
-
-
 
 
 
