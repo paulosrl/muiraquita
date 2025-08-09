@@ -421,33 +421,6 @@
 	  .media-grid .c3{ width: 140px !important; height: 145px !important; left: 310px !important; top: 80px !important }
 	  .media-grid .c4{ width: 125px !important; height: 135px !important; left: 250px !important; top: 260px !important }
 
-
-	/* Reduz 30% o tamanho dos círculos da direita (c3 e c4) no mobile */
-
-	  .media-grid .c1{ 
-		width: calc(140px * 0.8) !important; 
-		height: calc(145px * 0.8) !important;
-		left: calc(3px - (3px * 0.40)) !important; 			
-	  }
-	  .media-grid .c2{ 
-		width: calc(125px * 0.8) !important; 
-		height: calc(135px * 0.8) !important; 
-	    left: calc(130px - (130px * 0.70)) !important; 	
-	  }
-
-	  .media-grid .c3{ 
-		width: calc(140px * 0.7) !important; 
-		height: calc(145px * 0.7) !important;
-		left: calc(310px - (310px * 0.30)) !important; /* move 30% mais para a esquerda */		
-	  }
-	  .media-grid .c4{ 
-		width: calc(125px * 0.7) !important; 
-		height: calc(135px * 0.7) !important;
-		left: calc(250px - (250px * 0.30)) !important; /* move 30% mais para a esquerda */
-	  }
-
-
-
 	  /* garante que o SVG de ligações cubra o canvas fixo */
 	  .media-grid svg.links{
 		width: 520px !important;
@@ -588,6 +561,65 @@
   svg{
     max-width: 100% !important;
     height: auto !important;
+  }
+}
+
+
+/* --- Ajuste FINAL só para celular: evitar corte e aplicar recuos --- */
+@media (max-width: 640px){
+  /* c1: mantém; recuo de 20% é irrelevante pois já está encostado à esquerda */
+  .media-grid .c1{
+    left: 0 !important;
+  }
+
+  /* c2: recua mais para não cortar (20% planejado + correção prática) */
+  .media-grid .c2{
+    /* ~25% (original) -> 14% para garantir que não corte em telas estreitas */
+    left: 14% !important;
+  }
+
+  /* c3 e c4: 20% menores e 30% mais próximos (movendo para a esquerda) */
+  .media-grid .c3{
+    width: 112px !important;   /* 140 * 0.8 */
+    height: 116px !important;  /* 145 * 0.8 */
+    left: 42% !important;      /* ~60% original -> 60% - 30% = 42% */
+  }
+  .media-grid .c4{
+    width: 100px !important;   /* 125 * 0.8 */
+    height: 108px !important;  /* 135 * 0.8 */
+    left: 34% !important;      /* ~48% original -> 48% - 30% = ~33.6% */
+  }
+}
+
+
+/* --- Ajuste EXTRA (mobile): reduzir tamanhos e garantir afastamento --- */
+@media (max-width: 640px){
+  /* Esquerda (c1,c2): -30% */
+  .media-grid .c1{
+    width: 126px !important;   /* 180 * 0.7 */
+    height: 126px !important;  /* 180 * 0.7 */
+    left: 0 !important;
+    top: 250px !important;
+  }
+  .media-grid .c2{
+    width: 105px !important;   /* 150 * 0.7 */
+    height: 112px !important;  /* 160 * 0.7 */
+    left: 8% !important;       /* recuo para não cortar e afastar de c3 */
+    top: 16px !important;
+  }
+
+  /* Direita (c3,c4): -10% e 30% mais próximos que o original (já estavam puxados) */
+  .media-grid .c3{
+    width: 126px !important;   /* 140 * 0.9 */
+    height: 131px !important;  /* 145 * 0.9 */
+    left: 46% !important;      /* posição revista para manter folga de ~16px */
+    top: 88px !important;
+  }
+  .media-grid .c4{
+    width: 112px !important;   /* 125 * 0.9 ≈ 112.5 */
+    height: 122px !important;  /* 135 * 0.9 ≈ 121.5 */
+    left: 36% !important;      /* aproxima, mas sem encostar em c1 */
+    top: 274px !important;
   }
 }
 
