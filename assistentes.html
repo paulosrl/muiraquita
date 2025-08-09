@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<title>Muiraquitã | Escritórios de Inovação e IA</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style>
+    :root{
+      --azul-escuro: #0a2a66;
+      --azul-medio: #2E3953;
+      --azul-suave: #5a6a8f;
+      --fundo: #f4f6f9;
+      --branco: #fff;
+      --sombra: 0 4px 20px rgba(0,0,0,.08);
+      --radius: 16px;
+      --maxw: 1120px;
+
+      --tile-min: calc(160px * 0.95);
+      --tile-ideal: calc(42vw * 0.95);
+      --tile-max: calc(280px * 0.95);
+      --gap-x: 20px;
+      --gap-y: 10px;
+    }
+
+    html{ scroll-behavior: smooth }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--azul-medio);
+      background: var(--fundo);
+      line-height: 1.55;
+    }
+
+    img{ max-width: 100%; height: auto; display: block }
+
+    .topbar{
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 12px;
+      background: var(--azul-escuro);
+      z-index: 1000;
+    }
+
+    header.site-header{
+      position: sticky;
+      top: 12px;
+      z-index: 999;
+      background: var(--branco);
+      box-shadow: var(--sombra);
+    }
+    .header-inner{
+      position: relative;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .brand-line{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: center;
+      min-width: 0;
+    }
+    .brand-left{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: center;
+      min-width: 0;
+    }
+    .logo-mui{ width: 72px; height: 72px; object-fit: contain }
+    .titles{ min-width: 0; display: grid; grid-template-columns: 1fr }
+    .titulo-site{
+      display: block;
+      font-weight: 800;
+      font-size: clamp(1.2rem, 3.2vw, 2rem);
+      color: #111827;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+    }
+    .subtitulo-site{
+      display: block;
+      font-weight: 600;
+      color: var(--azul-suave);
+      font-size: clamp(.9rem, 2.2vw, 1.05rem);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+    }
+
+    .logo-mppa{
+      position: absolute;
+      top: 10px;
+      right: 64px;
+      width: 108px;
+      height: auto;
+      object-fit: contain;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #nav-toggle{
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      clip: rect(0 0 0 0);
+      overflow: hidden;
+    }
+    .hamburger{
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--azul-escuro);
+      color: var(--branco);
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,.15);
+      user-select: none;
+      outline: none;
+      border: 2px solid transparent;
+    }
+    .hamburger:focus-visible{ border-color: #001a48 }
+    .hamburger-icon{
+      position: relative;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+    }
+    .hamburger-icon::before,
+    .hamburger-icon::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+    }
+    .hamburger-icon::before{ top: -6px }
+    .hamburger-icon::after{ top: 6px }
+
+    nav.menu{
+      grid-column: 1 / -1;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: scaleY(.98);
+      transition: max-height .28s ease, opacity .28s ease, transform .28s ease;
+      background: var(--branco);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    }
+    nav.menu ul{
+      list-style: none;
+      margin: 8px;
+      padding: 6px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    nav.menu label.menu-item{ display: block; cursor: pointer }
+    nav.menu a{
+      display: block;
+      text-decoration: none;
+      color: var(--azul-medio);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #e9eef7;
+      outline: none;
+      border: 2px solid transparent;
+      transition: background .2s, color .2s, box-shadow .2s, transform .06s, border-color .2s;
+    }
+    nav.menu a:hover,
+    nav.menu a:focus-visible{
+      background: #dbe5f6;
+      color: var(--azul-escuro);
+      box-shadow: 0 6px 14px rgba(0,0,0,.12);
+      border-color: #c7d6f3;
+    }
+    .is-active{
+      background: var(--azul-escuro);
+      color: var(--branco) !important;
+      box-shadow: 0 6px 16px rgba(10,42,102,.35);
+    }
+
+    #nav-toggle:checked ~ nav.menu{
+      max-height: 520px;
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    .container{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    main{ padding-top: 12px }
+
+    section{
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 500px;
+      scroll-margin-top: 128px;
+      padding: clamp(14px, 3vw, 32px) 0;
+    }
+    .card{
+      background: var(--branco);
+      border-radius: var(--radius);
+      box-shadow: var(--sombra);
+      padding: clamp(16px, 3.6vw, 36px);
+    }
+    h2.section-title{
+      margin: 0 0 8px 0;
+      font-size: clamp(1.2rem, 2.6vw, 1.8rem);
+      color: var(--azul-escuro);
+      letter-spacing: .3px;
+    }
+    p.lead{
+      margin: 8px 0 0 0;
+      color: var(--azul-suave);
+      font-size: clamp(1rem, 1.7vw, 1.12rem);
+    }
+
+    /* área das quatro imagens, igual ao i10 com ajustes de z-index */
+    .hero{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .media-grid{
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      height: clamp(260px, 56vw, 420px);
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 12px;
+      isolation: isolate;
+      background: transparent;
+    }
+    .media-grid img.circ{
+      position: absolute;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--azul-suave);
+      box-shadow: 0 2px 16px rgba(32,42,68,.12);
+      opacity: 0;
+      transform: scale(.6);
+      transition: opacity .6s ease, transform .6s ease;
+      background: #fff;
+      z-index: 2;
+    }
+    .media-grid .c1{ width: 180px; height: 180px; left: 3px;   top: 210px }
+    .media-grid .c2{ width: 150px; height: 160px; left: 60px; top: 18px  }
+    .media-grid .c3{ width: 140px; height: 145px; left: 450px; top: 80px  }
+    .media-grid .c4{ width: 125px; height: 135px; left: 220px; top: 260px }
+    .media-grid img.circ.show{ opacity: 1; transform: scale(1) }
+
+    .media-grid svg.links{
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .media-grid svg.links line{
+      stroke: #2E3953;
+      stroke-width: 3.4;
+      stroke-linecap: round;
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+
+    /* estado ativo do menu quando a seção está selecionada */
+    body:has(#quem-somos:target) nav.menu a[href="#quem-somos"],
+    body:has(#equipe:target) nav.menu a[href="#equipe"],
+    body:has(#iniciativas:target) nav.menu a[href="#iniciativas"],
+    body:has(#assistentes:target) nav.menu a[href="#assistentes"],
+    body:has(#escritorios:target) nav.menu a[href="#escritorios"],
+    body:has(#parcerias:target) nav.menu a[href="#parcerias"],
+    body:has(#cadastre-sua-ideia:target) nav.menu a[href="#cadastre-sua-ideia"]{
+      background: var(--azul-escuro);
+      color: var(--branco);
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(10,42,102,.35);
+    }
+
+    /* responsivo, foco no subtítulo para não encostar no logo MPPA */
+    @media (max-width: 820px){
+      .titles{ padding-right: 120px }
+      .subtitulo-site{
+        font-size: clamp(.8rem, 2.8vw, .95rem) !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        line-height: 1.25;
+        word-break: normal;
+        overflow-wrap: break-word;
+      }
+    }
+    @media (max-width: 640px){
+      .titles{ padding-right: 132px }
+      .subtitulo-site{
+        font-size: clamp(.76rem, 3.2vw, .9rem) !important;
+        line-height: 1.28;
+      }
+    }
+    @media (max-width: 480px){
+      .titles{ padding-right: 144px }
+      .subtitulo-site{
+        font-size: clamp(.72rem, 3.6vw, .86rem) !important;
+        line-height: 1.3;
+      }
+    }
+
+    @media(min-width: 768px){
+      .hamburger{ display: none }
+      nav.menu{
+        grid-column: 1 / -1;
+        max-height: none;
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
+        background: transparent;
+      }
+      nav.menu ul{
+        display: flex;
+        gap: 8px;
+        margin: 6px 0 0 0;
+        padding: 0;
+      }
+
+      .hero{
+        grid-template-columns: 1.15fr 1fr;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .logo-mui{ width: 84px; height: 84px }
+      .logo-mppa{ right: 16px; width: 120px }
+    }
+    @media(min-width: 1024px){
+      .hero{
+        grid-template-columns: 1.2fr 1fr;
+        gap: 28px;
+      }
+      .logo-mui{ width: 92px; height: 92px }
+      .logo-mppa{ width: 128px }
+    }
+
+    .btn{
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: var(--azul-escuro);
+      color: var(--branco);
+      text-decoration: none;
+      font-weight: 800;
+      outline: none;
+      border: 2px solid transparent;
+      transition: transform .06s, box-shadow .2s, background .2s, border-color .2s;
+    }
+    .btn:hover,
+    .btn:focus-visible{
+      box-shadow: 0 10px 22px rgba(10,42,102,.35);
+      border-color: #001a48;
+    }
+    .btn:active{ transform: translateY(1px) }
+
+    footer.site-footer{ margin: 24px 0 16px 0 }
+    .footer-inner{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      background: var(--azul-escuro);
+      color: var(--branco);
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      text-align: center;
+      font-size: .9rem;
+      letter-spacing: .3px;
+      box-shadow: 0 0 22px rgba(0,0,0,.14);
+    }
+	/* Círculos em telas pequenas, mantém o mesmo tamanho e evita corte */
+	@media (max-width: 640px){
+	  /* a galeria vira um canvas fixo de 520x420 com rolagem própria se precisar */
+	  .media-grid{
+		width: 520px !important;
+		min-width: 520px !important;
+		max-width: none !important;
+		height: 420px !important;
+		overflow-x: auto !important;   /* rola só a galeria, não a página toda */
+		overflow-y: hidden !important;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 8px 0 8px 0;          /* folga interna para não encostar */
+		-webkit-overflow-scrolling: touch;
+	  }
+
+	  /* restaura tamanhos e posições originais para manter o visual */
+	  .media-grid .c1{ width: 180px !important; height: 180px !important; left: 3px !important;   top: 230px !important }
+	  .media-grid .c2{ width: 150px !important; height: 160px !important; left: 130px !important; top: 18px !important }
+	  .media-grid .c3{ width: 140px !important; height: 145px !important; left: 310px !important; top: 80px !important }
+	  .media-grid .c4{ width: 125px !important; height: 135px !important; left: 250px !important; top: 260px !important }
+
+	  /* garante que o SVG de ligações cubra o canvas fixo */
+	  .media-grid svg.links{
+		width: 520px !important;
+		height: 420px !important;
+	  }
+	}
+
+	/* Em telas ainda menores, mantém o canvas igual e centraliza, sem cortar */
+	@media (max-width: 480px){
+	  .media-grid{
+		width: 520px !important;
+		min-width: 520px !important;
+		height: 420px !important;
+	  }
+	}	
+	
+	/* Ajuste fino para os dois círculos superiores em telas pequenas */
+	@media (max-width: 640px){
+	  .media-grid .c2{ left: calc(130px - 20%) !important; }
+	  .media-grid .c3{ left: calc(310px - 20%) !important; }
+	}
+
+	@media (max-width: 480px){
+	  .media-grid .c2{ left: calc(130px - 20%) !important; }
+	}	
+	
+  .media-grid .c3{ left: calc(310px - 20%) !important; }
+  
+/* melhorias da seção Cadastre sua ideia */
+#cadastre-sua-ideia .card{
+  background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  border: 1px solid #e5eaf3;
+}
+#cadastre-sua-ideia .form-wrap{
+  display: grid;
+  gap: 16px;
+}
+#cadastre-sua-ideia .form-ideia{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+  margin-top: 6px;
+}
+#cadastre-sua-ideia .form-ideia .field{
+  display: grid;
+  gap: 6px;
+}
+#cadastre-sua-ideia .form-ideia .field.full{ grid-column: 1 / -1 }
+#cadastre-sua-ideia .form-ideia label{
+  color: var(--azul-medio);
+  font-weight: 700;
+  font-size: .98rem;
+}
+#cadastre-sua-ideia .form-ideia input,
+#cadastre-sua-ideia .form-ideia textarea{
+  border: 1.5px solid #d9e2f2;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  background: #f6f9ff;
+  outline: none;
+  transition: box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+#cadastre-sua-ideia .form-ideia input::placeholder,
+#cadastre-sua-ideia .form-ideia textarea::placeholder{ color: #7d8aad }
+#cadastre-sua-ideia .form-ideia input:focus,
+#cadastre-sua-ideia .form-ideia textarea:focus{
+  border-color: #b7c6ea;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(183,198,234,.25);
+}
+#cadastre-sua-ideia .form-actions{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  grid-column: 1 / -1;
+  margin-top: 6px;
+}
+#cadastre-sua-ideia .btn-primary{
+  background: var(--azul-escuro);
+  color: var(--branco);
+  font-weight: 800;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  cursor: not-allowed;
+  opacity: .85;
+  transition: transform .06s, box-shadow .2s;
+}
+#cadastre-sua-ideia .btn-primary:hover{ box-shadow: 0 10px 24px rgba(10,42,102,.28) }
+#cadastre-sua-ideia .hint{
+  font-size: .92rem;
+  color: var(--azul-suave);
+}
+@media (max-width: 720px){
+  #cadastre-sua-ideia .form-ideia{ grid-template-columns: 1fr }
+}
+
+
+/* destaque para títulos de áreas de atuação dos assistentes */
+.assistentes-section > h3{
+  background: var(--azul-escuro);
+  color: var(--branco);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+/* ----- Página de conteúdo longo: ajuste de espaçamento para não colar no cabeçalho ----- */
+main.content-page{ padding-top: clamp(40px, 6vw, 72px) }
+.content-wrapper{ max-width: var(--maxw); margin: 0 auto; padding: 0 16px }
+.content-card{ background: var(--branco); border-radius: var(--radius); box-shadow: var(--sombra); padding: clamp(16px, 3.6vw, 36px); margin-top: 12px }
+.content-card h1{ color: var(--azul-escuro); margin: 0 0 12px 0; font-size: clamp(1.6rem, 3vw, 2.2rem) }
+.content-card h2{ color: var(--azul-escuro); margin: 20px 0 10px 0; font-size: clamp(1.2rem, 2.4vw, 1.6rem) }
+.content-card p{ color: var(--azul-medio); font-size: 1.02rem }
+.content-meta{ color: var(--azul-suave); font-size:.95rem; margin-bottom: 8px }
+@media (max-width: 720px){
+  .content-card{ padding: 16px }
+}
+
+
+/* estilos importados para cards de assistentes dentro da página de conteúdo */
+.texto-inicial{ color: var(--azul-suave); font-size: 1.04rem; margin-bottom: 18px }
+.assistentes-section{ margin-top: 24px }
+.assistentes-section h2{ color: var(--azul-escuro); margin-bottom: 12px; font-size: 1.28rem; font-weight: 800 }
+.assistente-card{ display:flex; gap:16px; align-items:flex-start; background: rgba(20,30,60,.06); border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.06); padding: 14px 16px; margin-bottom: 12px }
+.assistente-icon{ width: 36px; height: 36px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top: 4px }
+.assistente-card h3{ margin: 0 0 6px 0; color: var(--azul-escuro); font-size: 1.05rem }
+.assistente-card .autor{ color: var(--azul-suave); font-size: .95rem; margin-bottom: 6px }
+.assistente-card .resumo{ font-size: .98rem; margin-bottom: 4px }
+.assistente-card .link-assistente{ color: var(--azul-medio); text-decoration: underline; font-weight: 600; font-size: 1rem }
+.assistente-card .link-assistente:hover{ color: var(--azul-escuro) }
+</style>
+</head>
+<body>
+<header class="site-header" role="banner">
+<div class="header-inner">
+<div class="brand-line">
+<div class="brand-left">
+<img alt="Logo Muiraquitã" class="logo-mui" height="90" src="imgs/LogoMui.png" width="90"/>
+<div class="titles">
+<span class="titulo-site">Muiraquitã</span>
+<span class="subtitulo-site">Escritórios de Inovação e Inteligência Artificial</span>
+</div>
+</div>
+</div>
+<img alt="Logo MPPA" class="logo-mppa" height="60" src="imgs/MPPA2.png" width="108"/>
+<input aria-controls="menu-principal" aria-label="Abrir menu" id="nav-toggle" type="checkbox"/>
+<label class="hamburger" for="nav-toggle">
+<span class="hamburger-icon"></span>
+</label>
+<nav aria-label="Menu principal" class="menu" id="menu-principal">
+<ul>
+<li><label class="menu-item" for="nav-toggle"><a href="index.html#quem-somos">Quem somos</a></label></li>
+<li><label class="menu-item" for="nav-toggle"><a href="index.html#equipe">Equipe</a></label></li>
+<li><label class="menu-item" for="nav-toggle"><a href="index.html#iniciativas">Iniciativas</a></label></li>
+<li><label class="menu-item" for="nav-toggle"><a href="index.html#assistentes">Assistentes de IA</a></label></li>
+<li><label class="menu-item" for="nav-toggle"><a href="index.html#escritorios">Escritórios Itinerantes</a></label></li>
+<li><label class="menu-item" for="nav-toggle"><a href="index.html#parcerias">Parcerias</a></label></li>
+<li><label class="menu-item" for="nav-toggle"><a href="index.html#cadastre-sua-ideia">Cadastre sua ideia</a></label></li>
+</ul>
+</nav>
+</div>
+</header>
+<main class="content-page">
+<section class="content-wrapper">
+<div class="content-card">
+<h1>Assistentes de IA</h1>
+<div class="texto-inicial">
+            Os assistentes de IA são organizados por área de especialização. Estes assistentes são recursos exclusivos do ChatGPT, estando disponíveis tanto nas versões gratuitas quanto nas versões pagas da plataforma.
+        </div>
+<section class="assistentes-section">
+<h2>Criminal</h2>
+<!-- Card 1 -->
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="30" viewbox="0 0 32 32" width="30">
+<rect fill="#415076" height="17" rx="2" width="4" x="14" y="4"></rect>
+<rect fill="#202A44" height="4" rx="2" width="14" x="9" y="18"></rect>
+<rect fill="#415076" height="4" rx="2" width="24" x="4" y="24"></rect>
+</svg>
+</div>
+<div>
+<h3>Correção de textos e peças jurídicas</h3>
+<div class="autor">Autor: Rodrigo A Silva</div>
+<div class="resumo">Finalidade: Esse GPT tem por finalidade corrigir textos e peças jurídicas:
+                        gramática, ortografia, semântica, sintaxe, concordância verbal, concordância nominal, entre
+                        outros, apresentando ao final uma tabela com as mudanças realizadas. Cole o texto ou insira o
+                        arquivo como anexo.</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-DGEId5wHj-correcao-de-textos-e-pecas-juridicas" target="_blank">Acessar assistente</a>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="30" viewbox="0 0 32 32" width="30">
+<rect fill="#415076" height="17" rx="2" width="4" x="14" y="4"></rect>
+<rect fill="#202A44" height="4" rx="2" width="14" x="9" y="18"></rect>
+<rect fill="#415076" height="4" rx="2" width="24" x="4" y="24"></rect>
+</svg>
+</div>
+<div>
+<h3>Análise de Laudos Periciais</h3>
+<div class="autor">Autor: Rodrigo A Silva</div>
+<div class="resumo">Finalidade: Analisar laudos periciais em profundidade, fornecendo insights
+                        valiosos para investigações criminais ou processos judiciais, esclarecendo dúvidas, traduzindo
+                        termos técnicos em linguagem simples, para melhor entendimento da dinâmica de um
+                        crime ou incidente.</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-680cf5dd6a588191a69aabbf9a016bb9-analise-de-laudos-periciais" target="_blank">Acessar assistente</a>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="30" viewbox="0 0 32 32" width="30">
+<rect fill="#415076" height="17" rx="2" width="4" x="14" y="4"></rect>
+<rect fill="#202A44" height="4" rx="2" width="14" x="9" y="18"></rect>
+<rect fill="#415076" height="4" rx="2" width="24" x="4" y="24"></rect>
+</svg>
+</div>
+<div>
+<h3>Analista de Investigações Criminais</h3>
+<div class="autor">Autor: Rodrigo A Silva</div>
+<div class="resumo">Finalidade: Este GPT irá guiá-lo(a) através de uma análise detalhada e holística
+                        de casos criminais encaminhados pela polícia civil ao Ministério Público, em diversas etapas de
+                        desenvolvimento da investigação, com geração de peças ou sugestões de diligências.</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-ty8UKG5tT-analista-de-investigacoes-criminais" target="_blank">Acessar assistente</a>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="30" viewbox="0 0 32 32" width="30">
+<rect fill="#415076" height="17" rx="2" width="4" x="14" y="4"></rect>
+<rect fill="#202A44" height="4" rx="2" width="14" x="9" y="18"></rect>
+<rect fill="#415076" height="4" rx="2" width="24" x="4" y="24"></rect>
+</svg>
+</div>
+<div>
+<h3>Audiências de Custódias e Plantão Judicial Criminal</h3>
+<div class="autor">Autor: Rodrigo A Silva</div>
+<div class="resumo">Elaborar Manifestações em Audiências de Custódias e Plantão Judicial pelo Ministério Público, 
+                        com possibilidade de elaboração da Peça jurídica escolhida: Não homologação do flagrante; 
+                        Conversão em prisão preventiva; Fixação de medidas cautelares diversas; e Fixação de medidas protetivas.</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-F9ox6YDcT-audiencias-custodias-e-plantao-judicial-criminal" target="_blank">Acessar assistente</a>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="30" viewbox="0 0 32 32" width="30">
+<rect fill="#415076" height="17" rx="2" width="4" x="14" y="4"></rect>
+<rect fill="#202A44" height="4" rx="2" width="14" x="9" y="18"></rect>
+<rect fill="#415076" height="4" rx="2" width="24" x="4" y="24"></rect>
+</svg>
+</div>
+<div>
+<h3>Preparação para Sessão do Juri - Promotores</h3>
+<div class="autor">Autor: Antonio Boregas</div>
+<div class="resumo">om foco em resumo detalhado dos fatos, mapa de versões, contradições relevantes, teses defensivas e 
+                        perguntas estratégicas. Anexe ou transcreva as peças essenciais. Dica: Exclua páginas em duplicidade (IPL duas vezes) 
+                        ou que não têm pertinência com a análise como intimações de testemunhas.</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-6809474a44148191ac8abef858618f06-preparacao-para-sessao-do-juri-promotores" target="_blank">Acessar assistente</a>
+</div>
+</div>
+</section>
+<section class="assistentes-section">
+<h2>Extrajudicial</h2>
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="32" viewbox="0 0 32 32" width="32">
+<ellipse cx="16" cy="27" fill="#202A44" rx="11" ry="2.3"></ellipse>
+<rect fill="#415076" height="14" rx="1.8" width="3.6" x="14.2" y="6"></rect>
+<path d="M16 7 L7 19 M16 7 L25 19" stroke="#415076" stroke-width="2"></path>
+<ellipse cx="7" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+<ellipse cx="25" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+</svg>
+</div>
+<div>
+<h3>Procedimentos Extrajudiciais MP</h3>
+<div class="autor">Autor: André Cavalcanti</div>
+<div class="resumo">Finalidade: Agente estruturado para análise preliminar, síntese fática e
+                        jurídica, indicação de diligências e elaboração objetiva de despachos em procedimentos
+                        extrajudiciais do Ministério Público, alinhado às Resoluções do CNMP, CPJ/MPPA e Enunciados do
+                        CSMP, incluindo viabilidade de ANPC e encaminhamentos.</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-THFRV6AQM-procedimentos-extrajudiciais-mp" target="_blank">Acessar assistente</a>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="32" viewbox="0 0 32 32" width="32">
+<ellipse cx="16" cy="27" fill="#202A44" rx="11" ry="2.3"></ellipse>
+<rect fill="#415076" height="14" rx="1.8" width="3.6" x="14.2" y="6"></rect>
+<path d="M16 7 L7 19 M16 7 L25 19" stroke="#415076" stroke-width="2"></path>
+<ellipse cx="7" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+<ellipse cx="25" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+</svg>
+</div>
+<div>
+<h3>Extrajudicial no MP</h3>
+<div class="autor">Autor: Antonio Boregas</div>
+<div class="resumo">Finalidade: Análise extrajudicial resolutiva. Ele organiza a interpretação da portaria de instauração 
+                        e dos demais documentos juntados, exige precisão absoluta nos fatos, aplica metodologia passo a passo e entrega um diagnóstico com opções de resolução'</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-oxUrDEkMz-extrajudicial-no-mp" target="_blank">Acessar assistente</a>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="32" viewbox="0 0 32 32" width="32">
+<ellipse cx="16" cy="27" fill="#202A44" rx="11" ry="2.3"></ellipse>
+<rect fill="#415076" height="14" rx="1.8" width="3.6" x="14.2" y="6"></rect>
+<path d="M16 7 L7 19 M16 7 L25 19" stroke="#415076" stroke-width="2"></path>
+<ellipse cx="7" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+<ellipse cx="25" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+</svg>
+</div>
+<div>
+<h3>Portaria de Procedimento Administrativo</h3>
+<div class="autor">Autor: Antonio Boregas</div>
+<div class="resumo">Crie uma portaria de Procedimento Administrativo, em segundos, com base na Notícia de Fato anexada</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-pscUUWtMJ-portaria-de-procedimento-adminstrativo" target="_blank">Acessar assistente</a>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="32" viewbox="0 0 32 32" width="32">
+<ellipse cx="16" cy="27" fill="#202A44" rx="11" ry="2.3"></ellipse>
+<rect fill="#415076" height="14" rx="1.8" width="3.6" x="14.2" y="6"></rect>
+<path d="M16 7 L7 19 M16 7 L25 19" stroke="#415076" stroke-width="2"></path>
+<ellipse cx="7" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+<ellipse cx="25" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+</svg>
+</div>
+<div>
+<h3>Fiscalização Unidades de Saúde da Família (GATI)</h3>
+<div class="autor">Autor: Paulo Lima</div>
+<div class="resumo">Finalidade: O agente FISCALSAUDE auxilia o MPPA na fiscalização técnica das
+                        Unidades de Saúde da Família (USF), coletando dados estruturados e elaborando relatórios
+                        conforme normas específicas.</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-683e1768a8a08191be7a370edc3fe327-fiscalsaude" target="_blank">Acessar assistente</a>
+</div>
+</div>
+</section>
+<section class="assistentes-section">
+<h2>Cível</h2>
+<div class="assistente-card">
+<div class="assistente-icon">
+<svg fill="none" height="32" viewbox="0 0 32 32" width="32">
+<ellipse cx="16" cy="27" fill="#202A44" rx="11" ry="2.3"></ellipse>
+<rect fill="#415076" height="14" rx="1.8" width="3.6" x="14.2" y="6"></rect>
+<path d="M16 7 L7 19 M16 7 L25 19" stroke="#415076" stroke-width="2"></path>
+<ellipse cx="7" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+<ellipse cx="25" cy="22" fill="#202A44" rx="3" ry="1"></ellipse>
+</svg>
+</div>
+<div>
+<h3>Parecer Cível - MP</h3>
+<div class="autor">Autor: André Cavalcanti</div>
+<div class="resumo">Finalidade: Agente estruturado para análise preliminar objetiva e redação
+                        fundamentada de pareceres ministeriais em processos judiciais cíveis, destacando provas,
+                        questões jurídicas essenciais e diligências necessárias, alinhado às normas de atuação do
+                        Ministério Público e boas práticas jurídicas.</div>
+<a class="link-assistente" href="https://chatgpt.com/g/g-688d12c4ccfc8191a04d84aed0d96c77-parecer-civel-mp" target="_blank">Acessar assistente</a>
+</div>
+</div>
+</section>
+</div>
+</section>
+</main>
+<footer class="site-footer" role="contentinfo">
+<div class="footer-inner">
+      Ministério Público do Estado do Pará, Desenvolvido pelos Escritórios de Inovação e Inteligência Artificial, 08/2025, V 1.2
+    </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const grid = document.querySelector('.media-grid');
+      const svg  = grid.querySelector('svg.links');
+      const lines = ['ln1','ln2','ln3','ln4'].map(id => document.getElementById(id));
+
+      /* embaralha as imagens entre os círculos a cada carga */
+      const circles = Array.from(grid.querySelectorAll('img.circ'));
+      const sources = circles.map(img => ({ src: img.getAttribute('src'), alt: img.getAttribute('alt') }));
+      for(let i = sources.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [sources[i], sources[j]] = [sources[j], sources[i]];
+      }
+      circles.forEach((img, i) => { img.src = sources[i].src; img.alt = sources[i].alt });
+
+      /* animação de entrada dos círculos */
+      circles.forEach((el, i) => {
+        setTimeout(() => { el.classList.add('show') }, i * 140);
+      });
+
+      /* desenha linhas tocando as bordas, conecta todos em ciclo, sem cruzar */
+      function drawEdgesTouching(){
+        const w = grid.clientWidth;
+        const h = grid.clientHeight;
+        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+
+        const rectGrid = grid.getBoundingClientRect();
+        const pts = circles.map(el => {
+          const r = el.getBoundingClientRect();
+          const cx = r.left - rectGrid.left + r.width / 2;
+          const cy = r.top  - rectGrid.top  + r.height / 2;
+          const rad = Math.min(r.width, r.height) / 2;
+          return { el, cx, cy, rad };
+        });
+
+        const centroid = {
+          cx: pts.reduce((a, p) => a + p.cx, 0) / pts.length,
+          cy: pts.reduce((a, p) => a + p.cy, 0) / pts.length
+        };
+        pts.sort((a, b) => Math.atan2(a.cy - centroid.cy, a.cx - centroid.cx) - Math.atan2(b.cy - centroid.cy, b.cx - centroid.cx));
+
+        const edgePoint = (a, b, fromA = true) => {
+          const dx = b.cx - a.cx;
+          const dy = b.cy - a.cy;
+          const d  = Math.hypot(dx, dy) || 1;
+          const ux = dx / d;
+          const uy = dy / d;
+          const rr = fromA ? a.rad : b.rad;
+          return { x: (fromA ? a.cx : b.cx) + (fromA ? 1 : -1) * ux * rr, y: (fromA ? a.cy : b.cy) + (fromA ? 1 : -1) * uy * rr };
+        };
+
+        const edges = [];
+        for(let i = 0; i < pts.length; i++){
+          const a = pts[i];
+          const b = pts[(i + 1) % pts.length];
+          const p1 = edgePoint(a, b, true);
+          const p2 = edgePoint(a, b, false);
+          edges.push([p1, p2]);
+        }
+
+        edges.forEach((seg, i) => {
+          const ln = lines[i];
+          if(!ln) return;
+          ln.setAttribute('x1', seg[0].x);
+          ln.setAttribute('y1', seg[0].y);
+          ln.setAttribute('x2', seg[1].x);
+          ln.setAttribute('y2', seg[1].y);
+        });
+
+        edges.forEach((_, i) => {
+          const ln = lines[i];
+          if(!ln) return;
+          ln.style.opacity = '0';
+          setTimeout(() => { ln.style.opacity = '.28' }, i * 140);
+        });
+      }
+
+      setTimeout(drawEdgesTouching, 140 * circles.length + 220);
+
+      let t;
+      window.addEventListener('resize', () => {
+        clearTimeout(t);
+        t = setTimeout(drawEdgesTouching, 120);
+      });
+    });
+  </script>
+</body>
+</html>
