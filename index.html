@@ -421,6 +421,34 @@
 	  .media-grid .c3{ width: 140px !important; height: 145px !important; left: 310px !important; top: 80px !important }
 	  .media-grid .c4{ width: 125px !important; height: 135px !important; left: 250px !important; top: 260px !important }
 
+
+
+
+
+	/* Reduz 30% o tamanho dos círculos da direita (c3 e c4) no mobile */
+
+	  .media-grid .c1{ 
+		width: calc(140px * 0.8) !important; 
+		height: calc(145px * 0.8) !important; 
+	  }
+	  .media-grid .c2{ 
+		width: calc(125px * 0.8) !important; 
+		height: calc(135px * 0.8) !important; 
+	  }
+
+	  .media-grid .c3{ 
+		width: calc(140px * 0.7) !important; 
+		height: calc(145px * 0.7) !important; 
+	  }
+	  .media-grid .c4{ 
+		width: calc(125px * 0.7) !important; 
+		height: calc(135px * 0.7) !important; 
+	  }
+
+
+
+
+
 	  /* garante que o SVG de ligações cubra o canvas fixo */
 	  .media-grid svg.links{
 		width: 520px !important;
@@ -666,7 +694,11 @@
 
     <section id="assistentes" aria-labelledby="h-assistentes">
       <div class="card"><h2 id="h-assistentes" class="section-title">Assistentes de IA</h2>
-<p class="lead">Os assistentes de IA estão dividos por área de atuação.</p>
+<p class="lead">
+
+Os assistentes de IA são organizados por área de especialização. Estes assistentes são recursos exclusivos do ChatGPT, estando disponíveis tanto nas versões gratuitas quanto nas versões pagas da plataforma.
+
+</p>
 <section class="assistentes-section">
     <h3>Criminal</h3>
     <div class="assistente-card">
