@@ -532,6 +532,24 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
+
+/* Correção específica da seção "Quem somos" para mobile, evita corte do texto */
+#quem-somos p.lead{
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 640px){
+  #quem-somos .media-grid{
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
 </style>
 </head>
 <body>
