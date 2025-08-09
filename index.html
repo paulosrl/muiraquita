@@ -220,7 +220,7 @@
       content-visibility: auto;
       contain-intrinsic-size: 1px 500px;
       scroll-margin-top: 128px;
-      padding: clamp(32px, 6vw, 72px) 0;
+      padding: clamp(14px, 3vw, 32px) 0;
     }
     .card{
       background: var(--branco);
@@ -229,7 +229,7 @@
       padding: clamp(16px, 3.6vw, 36px);
     }
     h2.section-title{
-      margin: 0 0 10px 0;
+      margin: 0 0 8px 0;
       font-size: clamp(1.2rem, 2.6vw, 1.8rem);
       color: var(--azul-escuro);
       letter-spacing: .3px;
@@ -240,7 +240,7 @@
       font-size: clamp(1rem, 1.7vw, 1.12rem);
     }
 
-    /* área das quatro imagens,  igual ao i10 com ajustes de z-index */
+    /* área das quatro imagens, igual ao i10 com ajustes de z-index */
     .hero{
       display: grid;
       grid-template-columns: 1fr;
@@ -448,7 +448,91 @@
 	}	
 	
   .media-grid .c3{ left: calc(310px - 20%) !important; }
-  </style>
+  
+/* melhorias da seção Cadastre sua ideia */
+#cadastre-sua-ideia .card{
+  background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  border: 1px solid #e5eaf3;
+}
+#cadastre-sua-ideia .form-wrap{
+  display: grid;
+  gap: 16px;
+}
+#cadastre-sua-ideia .form-ideia{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+  margin-top: 6px;
+}
+#cadastre-sua-ideia .form-ideia .field{
+  display: grid;
+  gap: 6px;
+}
+#cadastre-sua-ideia .form-ideia .field.full{ grid-column: 1 / -1 }
+#cadastre-sua-ideia .form-ideia label{
+  color: var(--azul-medio);
+  font-weight: 700;
+  font-size: .98rem;
+}
+#cadastre-sua-ideia .form-ideia input,
+#cadastre-sua-ideia .form-ideia textarea{
+  border: 1.5px solid #d9e2f2;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  background: #f6f9ff;
+  outline: none;
+  transition: box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+#cadastre-sua-ideia .form-ideia input::placeholder,
+#cadastre-sua-ideia .form-ideia textarea::placeholder{ color: #7d8aad }
+#cadastre-sua-ideia .form-ideia input:focus,
+#cadastre-sua-ideia .form-ideia textarea:focus{
+  border-color: #b7c6ea;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(183,198,234,.25);
+}
+#cadastre-sua-ideia .form-actions{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  grid-column: 1 / -1;
+  margin-top: 6px;
+}
+#cadastre-sua-ideia .btn-primary{
+  background: var(--azul-escuro);
+  color: var(--branco);
+  font-weight: 800;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  cursor: not-allowed;
+  opacity: .85;
+  transition: transform .06s, box-shadow .2s;
+}
+#cadastre-sua-ideia .btn-primary:hover{ box-shadow: 0 10px 24px rgba(10,42,102,.28) }
+#cadastre-sua-ideia .hint{
+  font-size: .92rem;
+  color: var(--azul-suave);
+}
+@media (max-width: 720px){
+  #cadastre-sua-ideia .form-ideia{ grid-template-columns: 1fr }
+}
+
+
+/* destaque para títulos de áreas de atuação dos assistentes */
+.assistentes-section > h3{
+  background: var(--azul-escuro);
+  color: var(--branco);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+</style>
 </head>
 <body>
   <div class="topbar" aria-hidden="true"></div>
@@ -516,39 +600,151 @@
     </section>
 
     <section id="equipe" aria-labelledby="h-equipe">
-      <div class="card">
-        <h2 id="h-equipe" class="section-title">Equipe</h2>
-      </div>
+      <div class="card"><h2 id="h-equipe" class="section-title">Equipe</h2>
+<h3>Comitê de Governança de Inovação e Inteligência Artificial (CIIA)</h3>
+<ul>
+    <li>Daniela Souza Filho Moura (Coordenadora)</li>
+    <li>Mônica Cristina Gonçalves Melo da Rocha (Vice-Coordenadora)</li>
+    <li>Lauro Francisco da Silva Freitas Junior (Encarregado da proteção de dados)</li>
+    <li>Jose Edvaldo Pereira Sales (CEAF)</li>
+    <li>Kelle Cristina Fortunato da Costa (Assessora)</li>
+    <li>Fabricio José Barroso Saldanha (Representante de TI)</li>
+    <li>Adriano Silva de Arruda (Planejamento Estratégico)</li>
+    <li>Paulo Sergio Rodrigues Lima (Analista Ministerial - Sistemas de Informação)</li>
+</ul>
+<h3>Escritório de Inovação</h3>
+<ul>
+    <li>Monique Nathyane Coelho Queiroz (Coordenadora)</li>
+    <li>Aline Neiva Alves da Silva (Vice-Coordenadora)</li>
+</ul>
+<h3>Escritório de Inteligência Artificial</h3>
+<ul>
+    <li>Rodrigo Aquino Silva (Coordenador)</li>
+    <li>André Cavalcanti de Oliveira (Vice-Coordenador)</li>
+</ul>
+<p><a href="docs/Port2599pgj2025mppa.pdf" target="_blank">PORTARIA N.º 2599/2025-MP/PGJ</a></p>
+</div>
     </section>
 
     <section id="iniciativas" aria-labelledby="h-iniciativas">
-      <div class="card">
-        <h2 id="h-iniciativas" class="section-title">Iniciativas</h2>
-      </div>
+      <div class="card"><h2 id="h-iniciativas" class="section-title">Iniciativas</h2>
+<p class="lead">Em breve você encontrará aqui as principais iniciativas dos Laboratórios de Inovação e Inteligência Artificial, incluindo projetos, parcerias e ações estratégicas desenvolvidas pelo MPPA.</p>
+</div>
     </section>
 
     <section id="assistentes" aria-labelledby="h-assistentes">
-      <div class="card">
-        <h2 id="h-assistentes" class="section-title">Assistentes de IA</h2>
-      </div>
+      <div class="card"><h2 id="h-assistentes" class="section-title">Assistentes de IA</h2>
+<p class="lead">Os assistentes de IA estão dividos por área de atuação.</p>
+<section class="assistentes-section">
+    <h3>Criminal</h3>
+    <div class="assistente-card">
+        <h4>Correção de textos e peças jurídicas</h4>
+        <div class="autor">Autor: Rodrigo A Silva</div>
+        <p class="resumo">Finalidade: Esse GPT tem por finalidade corrigir textos e peças jurídicas: gramática, ortografia, semântica, sintaxe, concordância verbal, concordância nominal, entre outros, apresentando ao final uma tabela com as mudanças realizadas. Cole o texto ou insira o arquivo como anexo.</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-DGEId5wHj-correcao-de-textos-e-pecas-juridicas" target="_blank">Acessar assistente</a>
+    </div>
+    <div class="assistente-card">
+        <h4>Análise de Laudos Periciais</h4>
+        <div class="autor">Autor: Rodrigo A Silva</div>
+        <p class="resumo">Finalidade: Analisar laudos periciais em profundidade, fornecendo insights valiosos para investigações criminais ou processos judiciais, esclarecendo dúvidas, traduzindo termos técnicos em linguagem simples, para melhor entendimento da dinâmica de um crime ou incidente.</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-680cf5dd6a588191a69aabbf9a016bb9-analise-de-laudos-periciais" target="_blank">Acessar assistente</a>
+    </div>
+    <div class="assistente-card">
+        <h4>Analista de Investigações Criminais</h4>
+        <div class="autor">Autor: Rodrigo A Silva</div>
+        <p class="resumo">Finalidade: Este GPT irá guiá-lo(a) através de uma análise detalhada e holística de casos criminais encaminhados pela polícia civil ao Ministério Público, em diversas etapas de desenvolvimento da investigação, com geração de peças ou sugestões de diligências.</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-ty8UKG5tT-analista-de-investigacoes-criminais" target="_blank">Acessar assistente</a>
+    </div>
+    <div class="assistente-card">
+        <h4>Audiências de Custódias e Plantão Judicial Criminal</h4>
+        <div class="autor">Autor: Rodrigo A Silva</div>
+        <p class="resumo">Elaborar Manifestações em Audiências de Custódias e Plantão Judicial pelo Ministério Público, com possibilidade de elaboração da Peça jurídica escolhida: Não homologação do flagrante, Conversão em prisão preventiva, Fixação de medidas cautelares diversas, e Fixação de medidas protetivas.</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-F9ox6YDcT-audiencias-custodias-e-plantao-judicial-criminal" target="_blank">Acessar assistente</a>
+    </div>
+    <div class="assistente-card">
+        <h4>Preparação para Sessão do Juri - Promotores</h4>
+        <div class="autor">Autor: Antonio Boregas</div>
+        <p class="resumo">om foco em resumo detalhado dos fatos, mapa de versões, contradições relevantes, teses defensivas e perguntas estratégicas. Anexe ou transcreva as peças essenciais. Dica: Exclua páginas em duplicidade (IPL duas vezes) ou que não têm pertinência com a análise como intimações de testemunhas.</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-6809474a44148191ac8abef858618f06-preparacao-para-sessao-do-juri-promotores" target="_blank">Acessar assistente</a>
+    </div>
+</section>
+<section class="assistentes-section">
+    <h3>Extrajudicial</h3>
+    <div class="assistente-card">
+        <h4>Procedimentos Extrajudiciais MP</h4>
+        <div class="autor">Autor: André Cavalcanti</div>
+        <p class="resumo">Finalidade: Agente estruturado para análise preliminar, síntese fática e jurídica, indicação de diligências e elaboração objetiva de despachos em procedimentos extrajudiciais do Ministério Público, alinhado às Resoluções do CNMP, CPJ/MPPA e Enunciados do CSMP, incluindo viabilidade de ANPC e encaminhamentos.</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-THFRV6AQM-procedimentos-extrajudiciais-mp" target="_blank">Acessar assistente</a>
+    </div>
+    <div class="assistente-card">
+        <h4>Extrajudicial no MP</h4>
+        <div class="autor">Autor: Antonio Boregas</div>
+        <p class="resumo">Finalidade: Análise extrajudicial resolutiva. Ele organiza a interpretação da portaria de instauração e dos demais documentos juntados, exige precisão absoluta nos fatos, aplica metodologia passo a passo e entrega um diagnóstico com opções de resolução'</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-oxUrDEkMz-extrajudicial-no-mp" target="_blank">Acessar assistente</a>
+    </div>
+    <div class="assistente-card">
+        <h4>Portaria de Procedimento Administrativo</h4>
+        <div class="autor">Autor: Antonio Boregas</div>
+        <p class="resumo">Crie uma portaria de Procedimento Administrativo, em segundos, com base na Notícia de Fato anexada</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-pscUUWtMJ-portaria-de-procedimento-adminstrativo" target="_blank">Acessar assistente</a>
+    </div>
+    <div class="assistente-card">
+        <h4>Fiscalização Unidades de Saúde da Família (GATI)</h4>
+        <div class="autor">Autor: Paulo Lima</div>
+        <p class="resumo">Finalidade: O agente FISCALSAUDE auxilia o MPPA na fiscalização técnica das Unidades de Saúde da Família (USF), coletando dados estruturados e elaborando relatórios conforme normas específicas.</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-683e1768a8a08191be7a370edc3fe327-fiscalsaude" target="_blank">Acessar assistente</a>
+    </div>
+</section>
+<section class="assistentes-section">
+    <h3>Cível</h3>
+    <div class="assistente-card">
+        <h4>Parecer Cível - MP</h4>
+        <div class="autor">Autor: André Cavalcanti</div>
+        <p class="resumo">Finalidade: Agente estruturado para análise preliminar objetiva e redação fundamentada de pareceres ministeriais em processos judiciais cíveis, destacando provas, questões jurídicas essenciais e diligências necessárias, alinhado às normas de atuação do Ministério Público e boas práticas jurídicas.</p>
+        <a class="link-assistente" href="https://chatgpt.com/g/g-688d12c4ccfc8191a04d84aed0d96c77-parecer-civel-mp" target="_blank">Acessar assistente</a>
+    </div>
+</section>
+</div>
     </section>
 
     <section id="escritorios" aria-labelledby="h-escritorios">
-      <div class="card">
-        <h2 id="h-escritorios" class="section-title">Escritórios Itinerantes</h2>
-      </div>
+      <div class="card"><h2 id="h-escritorios" class="section-title">Escritórios Itinerantes</h2>
+<p class="lead">Em breve serão divulgadas as ações, roteiros e resultados dos Escritórios Itinerantes de Inovação e Inteligência Artificial do MPPA.</p>
+</div>
     </section>
 
     <section id="parcerias" aria-labelledby="h-parcerias">
-      <div class="card">
-        <h2 id="h-parcerias" class="section-title">Parcerias</h2>
-      </div>
+      <div class="card"><h2 id="h-parcerias" class="section-title">Parcerias</h2>
+<p class="lead">Aqui serão apresentadas as parcerias estratégicas firmadas pelo MPPA para fortalecer a inovação e o uso de inteligência artificial, envolvendo instituições públicas, universidades e a sociedade.</p>
+</div>
     </section>
 
     <section id="cadastre-sua-ideia" aria-labelledby="h-cadastre">
-      <div class="card">
-        <h2 id="h-cadastre" class="section-title">Cadastre sua ideia</h2>
-      </div>
+      <div class="card"><h2 id="h-cadastre" class="section-title">Cadastre sua ideia</h2>
+
+<p class="lead">Tem uma sugestão, proposta ou projeto para inovação ou uso de IA no MPPA? Preencha o formulário a seguir e envie sua ideia para avaliação do nosso Comitê.</p>
+<div class="form-wrap">
+  <form class="form-ideia" autocomplete="off">
+    <div class="field">
+      <label for="nome">Seu nome</label>
+      <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+    </div>
+    <div class="field">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="seunome@mp.pa.gov.br" required>
+    </div>
+    <div class="field full">
+      <label for="ideia">Sua ideia</label>
+      <textarea id="ideia" name="ideia" rows="6" placeholder="Descreva sua ideia ou sugestão" required></textarea>
+      <span class="hint">Descreva o problema, a solução proposta e o impacto esperado. Se houver links de referência, inclua aqui.</span>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-primary" disabled>Enviar em breve</button>
+    </div>
+  </form>
+</div>
+
+</div>
     </section>
   </main>
 
