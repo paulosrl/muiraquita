@@ -550,6 +550,20 @@
   }
 }
 
+
+/* Correção das linhas que conectam os círculos no mobile */
+@media (max-width: 640px){
+  .linha-conexao, .connection-line, svg line {
+    stroke-width: 2px !important;
+    vector-effect: non-scaling-stroke;
+    shape-rendering: geometricPrecision;
+  }
+  svg{
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
 </style>
 </head>
 <body>
