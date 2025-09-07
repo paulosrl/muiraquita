@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CIIA MPPA, Links e Prompts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .copy-btn:active { transform: translateY(1px) }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace }
+    .prompt-box { white-space: pre-wrap }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- Header -->
+  <header class="bg-white border-b">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gray-900 text-white grid place-items-center text-sm font-bold">C</div>
+        <div>
+          <p class="text-sm tracking-wide text-gray-500">Comitê de Governança</p>
+          <h1 class="text-lg font-semibold leading-tight">Inovação e Inteligência Artificial, MPPA</h1>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a class="text-gray-700 hover:text-gray-900" href="#parte1">Primeira parte</a>
+        <a class="text-gray-700 hover:text-gray-900" href="#parte2">Segunda parte</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-b from-white to-gray-100 border-b">
+    <div class="max-w-6xl mx-auto px-4 py-10">
+      <h2 class="text-3xl md:text-4xl font-bold">Links e Prompts</h2>
+      <p class="mt-2 text-gray-600">Cole, copie e utilize os prompts conforme indicado.</p>
+    </div>
+  </section>
+
+  <main class="max-w-6xl mx-auto px-4 py-10 space-y-12">
+    <!-- PRIMEIRA PARTE -->
+    <section id="parte1" class="space-y-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-2xl font-semibold">Primeira parte</h3>
+        <button class="copy-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-white text-sm" onclick="copySection('parte1')">Copiar tudo</button>
+      </div>
+      <p class="text-sm text-gray-600">Use apenas o texto após a palavra “Prompt”. Os blocos abaixo já exibem somente o conteúdo solicitado.</p>
+
+      <!-- Prompt 1 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 1</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('p1')">Copiar</button>
+        </header>
+        <textarea id="p1" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="5" readonly>Vamos simular como funcionam as LLMs. Para cada frase que eu escrever, você deve listar apenas as 5 palavras mais prováveis para completá-la, junto com suas probabilidades em percentual (%). Não inclua explicações extras, apenas as palavras e as porcentagens.</textarea>
+      </article>
+
+      <!-- Prompt 2 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 2</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('p2')">Copiar</button>
+        </header>
+        <textarea id="p2" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="2" readonly>Eu gosto muito de inteligência artificial e quero trabalhar</textarea>
+      </article>
+
+      <!-- Prompt 3 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 3</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('p3')">Copiar</button>
+        </header>
+        <textarea id="p3" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="2" readonly>Eu gosto muito de inteligência artificial e quero trabalhar com </textarea>
+      </article>
+    </section>
+
+    <!-- SEGUNDA PARTE -->
+    <section id="parte2" class="space-y-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-2xl font-semibold">Segunda parte</h3>
+        <button class="copy-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-white text-sm" onclick="copySection('parte2')">Copiar tudo</button>
+      </div>
+
+      <!-- Prompt 1 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 1</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s1')">Copiar</button>
+        </header>
+        <textarea id="s1" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="2" readonly>Complete a sentença: De um povo heroico o brado retumbante</textarea>
+      </article>
+
+      <!-- Prompt 2 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 2</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s2')">Copiar</button>
+        </header>
+        <textarea id="s2" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="3" readonly>Gere uma imagem de alunos estudando medicina usando telas e dispositivos de interação baseados em IA generativa em um cenário futurístico.</textarea>
+      </article>
+
+      <!-- Prompt 3, imagem -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 3</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s3')">Copiar</button>
+        </header>
+        <textarea id="s3" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="4" readonly>Que lugar é esse:
+&lt;INSIRA A IMAGEM&gt;</textarea>
+      </article>
+
+      <!-- Prompt 4 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 4</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s4')">Copiar</button>
+        </header>
+        <textarea id="s4" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="4" readonly>Escreva um parecer jurídico sobre a legalidade da condução coercitiva de testemunha em processo criminal.</textarea>
+      </article>
+
+      <!-- Prompt 5 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm space-y-3">
+        <header class="flex items-center justify-between">
+          <h4 class="font-medium text-gray-800">Prompt 5</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s5')">Copiar</button>
+        </header>
+        <textarea id="s5" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="18" readonly>Você é um Promotor de Justiça atuando na esfera extrajudicial. Sua tarefa é analisar termos de ajustamento de conduta (TAC) e identificar se estão adequados à legislação e ao interesse público.
+
+Exemplo 1:  
+TAC: "A empresa se compromete a não lançar esgoto sem tratamento em área pública, devendo implantar sistema adequado em até 90 dias"  
+Análise: "Adequado, pois há obrigação clara e prazo definido"
+
+Exemplo 2:  
+TAC: "O comerciante se compromete a não utilizar menores de idade em trabalho infantil, mas sem prazo ou medidas de fiscalização."  
+Análise: "Este TAC é inválido, pois não há prazo definido nem mecanismo para garantir o cumprimento"
+
+Agora analise o seguinte TAC:  
+[cole aqui o conteúdo do TAC que deseja analisar]</textarea>
+      </article>
+
+      <!-- Prompt 6 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 6</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s6')">Copiar</button>
+        </header>
+        <textarea id="s6" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="5" readonly>Como Promotor do MPPA, examine passo a passo uma notícia de crime ambiental: identifique dano, compare com a legislação ambiental, avalie provas e defina ações cabíveis.</textarea>
+      </article>
+
+      <!-- Prompt 7 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 7</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s7')">Copiar</button>
+        </header>
+        <textarea id="s7" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="6" readonly>Você é um promotor de justiça criminal no MPPA. O réu foi preso em flagrante por tráfico de drogas, com 30g de cocaína e R$ 2.000 em espécie. Redija a denúncia atendendo aos requisitos do art. 41 do CPP.</textarea>
+      </article>
+
+      <!-- Prompt 8 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 8</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s8')">Copiar</button>
+        </header>
+        <textarea id="s8" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="6" readonly>Redija um parecer técnico, em linguagem acessível a leigos, explicando os efeitos da usucapião extrajudicial em imóveis urbanos.</textarea>
+      </article>
+
+      <!-- Prompt 9 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 9</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s9')">Copiar</button>
+        </header>
+        <textarea id="s9" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="8" readonly>Explique, em até 5 parágrafos, os requisitos legais para concessão de tutela antecipada em ações de guarda de menores.</textarea>
+      </article>
+
+      <!-- Prompt 10 -->
+      <article class="bg-white border rounded-2xl p-4 md:p-6 shadow-sm">
+        <header class="flex items-center justify-between mb-3">
+          <h4 class="font-medium text-gray-800">Prompt 10</h4>
+          <button class="copy-btn px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm" onclick="copyText('s10')">Copiar</button>
+        </header>
+        <textarea id="s10" class="w-full mono prompt-box text-sm md:text-base bg-gray-50 border rounded-xl p-3" rows="8" readonly>Explique passo a passo como um promotor de justiça deve instaurar um Inquérito Civil para apurar irregularidades em licitação municipal.</textarea>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600">
+      <p>MPPA, Comitê de Governança de Inovação e Inteligência Artificial</p>
+    </div>
+  </footer>
+
+  <script>
+    function copyText(textareaId) {
+      const el = document.getElementById(textareaId)
+      el.select()
+      el.setSelectionRange(0, 99999)
+      document.execCommand('copy')
+      const btn = event.currentTarget
+      const original = btn.textContent
+      btn.textContent = 'Copiado'
+      setTimeout(() => { btn.textContent = original }, 1200)
+    }
+
+    function copySection(sectionId) {
+      const section = document.getElementById(sectionId)
+      const texts = Array.from(section.querySelectorAll('textarea')).map(t => t.value)
+      const blob = new Blob([texts.join('\n\n')], { type: 'text/plain' })
+      const reader = new FileReader()
+      reader.onload = () => {
+        const tmp = document.createElement('textarea')
+        tmp.style.position = 'fixed'
+        tmp.style.opacity = '0'
+        tmp.value = reader.result
+        document.body.appendChild(tmp)
+        tmp.select()
+        tmp.setSelectionRange(0, 999999)
+        document.execCommand('copy')
+        document.body.removeChild(tmp)
+      }
+      reader.readAsText(blob)
+      const btn = event.currentTarget
+      const original = btn.textContent
+      btn.textContent = 'Tudo copiado'
+      setTimeout(() => { btn.textContent = original }, 1200)
+    }
+  </script>
+</body>
+</html>
